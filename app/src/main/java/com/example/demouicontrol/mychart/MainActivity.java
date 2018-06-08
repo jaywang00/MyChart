@@ -3,6 +3,8 @@ package com.example.demouicontrol.mychart;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -32,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     void init(){
 
         List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-        dataSets.add(getData("March_每日花費"));
-        dataSets.add(getData("April_每日花費"));
+        dataSets.add(getData("March_每日支出", Color.GREEN));
+        dataSets.add(getData("April_每日花費", Color.BLUE));
 
 
         LineData lineData = new LineData(dataSets);
@@ -50,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setEnabled(false);
-        chart.setVisibleXRangeMaximum(30);
-
+        chart.setVisibleXRangeMaximum(5);
+        xAxis.setLabelCount(4);
         chart.invalidate(); // refresh
 
     }
 
-    LineDataSet getData(String label){
+    LineDataSet getData(String label, int color){
         List<Entry> entries = new ArrayList<Entry>();
 
         Random r = new Random();
@@ -65,10 +67,36 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LineDataSet dataSet = new LineDataSet(entries, label); // add entries to dataset
-        dataSet.setColor(Color.BLUE);
-        dataSet.setValueTextSize(10f);
+        dataSet.setColor(color);
         dataSet.setValueTextColor(Color.RED); // styling, ...
+        dataSet.setValueTextSize(12);
+        dataSet.setLineWidth(3);
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        dataSet.setCircleRadius(5);
+        dataSet.setCircleColor(Color.RED);
 
         return dataSet;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0,0,0,"ZoomIn").setIcon(R.drawable.zoomin).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(0,1,0,"ZoomOut").setIcon(R.drawable.zoomout).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case 0:
+                chart.zoomIn();
+                break;
+            case 1:
+                chart.zoomOut();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
