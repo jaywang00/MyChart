@@ -10,6 +10,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,20 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
     void init(){
 
-        List<Entry> entries = new ArrayList<Entry>();
-
-        Random r = new Random();
-        for(int i=1; i<=365; i++){
-            entries.add(new Entry(i,r.nextInt(500)));
-        }
-
-        LineDataSet dataSet = new LineDataSet(entries, "每日花費"); // add entries to dataset
-        dataSet.setColor(Color.BLUE);
-        dataSet.setValueTextSize(10f);
-        dataSet.setValueTextColor(Color.RED); // styling, ...
+        List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+        dataSets.add(getData("March_每日花費"));
+        dataSets.add(getData("April_每日花費"));
 
 
-        LineData lineData = new LineData(dataSet);
+        LineData lineData = new LineData(dataSets);
         chart.setData(lineData);
 
         XAxis xAxis = chart.getXAxis();
@@ -53,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setTextSize(15);
-        leftAxis.setTextColor(Color.RED);
+        leftAxis.setTextColor(Color.BLACK);
 
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setEnabled(false);
@@ -61,5 +54,21 @@ public class MainActivity extends AppCompatActivity {
 
         chart.invalidate(); // refresh
 
+    }
+
+    LineDataSet getData(String label){
+        List<Entry> entries = new ArrayList<Entry>();
+
+        Random r = new Random();
+        for(int i=1; i<=30; i++){
+            entries.add(new Entry(i,r.nextInt(500)));
+        }
+
+        LineDataSet dataSet = new LineDataSet(entries, label); // add entries to dataset
+        dataSet.setColor(Color.BLUE);
+        dataSet.setValueTextSize(10f);
+        dataSet.setValueTextColor(Color.RED); // styling, ...
+
+        return dataSet;
     }
 }
