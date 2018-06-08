@@ -34,27 +34,28 @@ public class MainActivity extends AppCompatActivity {
     void init(){
 
         List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-        dataSets.add(getData("三月_每日支出", Color.GREEN));
-        dataSets.add(getData("四月_每日支出", Color.BLUE));
-
+            dataSets.add(getData("三月_每日支出", Color.GREEN));
+            dataSets.add(getData("四月_每日支出", Color.BLUE));
 
         LineData lineData = new LineData(dataSets);
-        chart.setData(lineData);
+            chart.setData(lineData);
 
         XAxis xAxis = chart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextSize(15);
-        xAxis.setTextColor(Color.BLACK);
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            xAxis.setTextSize(15);
+            xAxis.setTextColor(Color.BLACK);
+//          xAxis.setLabelCount(4);
+            xAxis.setGranularity(1);
 
         YAxis leftAxis = chart.getAxisLeft();
-        leftAxis.setTextSize(15);
-        leftAxis.setTextColor(Color.BLACK);
+            leftAxis.setTextSize(15);
+            leftAxis.setTextColor(Color.BLACK);
 
         YAxis rightAxis = chart.getAxisRight();
-        rightAxis.setEnabled(false);
+            rightAxis.setEnabled(false);
+
         chart.setVisibleXRangeMaximum(5);
-//        xAxis.setLabelCount(4);
-        xAxis.setGranularity(1);
+
         chart.invalidate(); // refresh
 
     }
@@ -68,15 +69,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LineDataSet dataSet = new LineDataSet(entries, label); // add entries to dataset
-        dataSet.setColor(color);
-        dataSet.setValueTextColor(Color.RED); // styling, ...
-        dataSet.setValueTextSize(12);
-        dataSet.setLineWidth(3);
-        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-        dataSet.setCircleRadius(5);
-        dataSet.setCircleColor(Color.RED);
+            dataSet.setColor(color);
+            dataSet.setValueTextColor(Color.RED); // styling, ...
+            dataSet.setValueTextSize(12);
+            dataSet.setLineWidth(3);
+            dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            dataSet.setCircleRadius(5);
+            dataSet.setCircleColor(Color.RED);
 
-        return dataSet;
+            return dataSet;
     }
 
     @Override
