@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         LineDataSet dataSet = new LineDataSet(entries, "每日花費"); // add entries to dataset
         dataSet.setColor(Color.BLUE);
-
         dataSet.setValueTextSize(10f);
         dataSet.setValueTextColor(Color.RED); // styling, ...
+
 
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
