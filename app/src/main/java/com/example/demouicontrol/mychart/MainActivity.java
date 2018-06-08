@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setEnabled(false);
         chart.setVisibleXRangeMaximum(5);
-        xAxis.setLabelCount(4);
+//        xAxis.setLabelCount(4);
+        xAxis.setGranularity(1);
         chart.invalidate(); // refresh
 
     }
