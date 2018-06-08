@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     void init(){
 
         List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-        dataSets.add(getData("March_每日支出", Color.GREEN));
-        dataSets.add(getData("April_每日花費", Color.BLUE));
+        dataSets.add(getData("三月_每日支出", Color.GREEN));
+        dataSets.add(getData("四月_每日支出", Color.BLUE));
 
 
         LineData lineData = new LineData(dataSets);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         Random r = new Random();
         for(int i=1; i<=30; i++){
-            entries.add(new Entry(i,r.nextInt(500)));
+            entries.add(new Entry(i,r.nextInt(5000)));
         }
 
         LineDataSet dataSet = new LineDataSet(entries, label); // add entries to dataset
