@@ -11,7 +11,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity {
     //##### Add here
@@ -37,9 +37,12 @@ public class MainActivity extends AppCompatActivity {
 //            // turn your data into Entry objects
 //            entries.add(new Entry(data.getValueX(), data.getValueY()));
 //        }
-        entries.add(new Entry(2,30));
+        entries.add(new Entry(1,30));
+        entries.add(new Entry(3,45));
         entries.add(new Entry(5,40));
-        entries.add(new Entry(6,50));
+        entries.add(new Entry(7,20));
+        entries.add(new Entry(9,70));
+        entries.add(new Entry(11,40));
 
         LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
         dataSet.setColor(Color.BLUE);
